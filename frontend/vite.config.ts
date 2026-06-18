@@ -35,6 +35,11 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./specs/setup.ts'],
+    server: {
+      deps: {
+        inline: ['@mui/material', 'react-transition-group']
+      }
+    },
     typecheck: { tsconfig: './tsconfig.test.json' },
     coverage: {
       provider: 'v8',
