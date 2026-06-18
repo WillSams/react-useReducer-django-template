@@ -1,11 +1,13 @@
 version: 2
 updates:
-  - package-ecosystem: npm
-    directory: "/"
-    schedule:
-      interval: weekly
-    open-pull-requests-limit: 5
-    target-branch: main
+  # Dependabot updating root can break package updates since there are no tests for this in CI.
+  # You should update root dependencies manually
+  # - package-ecosystem: npm
+  #   directory: "/"
+  #   schedule:
+  #     interval: weekly
+  #   open-pull-requests-limit: 5
+  #   target-branch: main
 
   - package-ecosystem: npm
     directory: "/frontend"
