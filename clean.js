@@ -2,11 +2,12 @@ import { rmSync } from 'fs';
 
 const dirs = [
   './node_modules',
+  './.venv',
   './frontend/node_modules',
   './frontend/dist',
   './frontend/coverage',
-  './backend/node_modules',
-  './backend/dist'
+  './backend/.pytest_cache',
+  './backend/.ruff_cache'
 ];
 
 for (const dir of dirs) {
