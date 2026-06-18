@@ -1,0 +1,41 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "eslint-comments"],
+  "env": { "node": true, "es2022": true },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:eslint-comments/recommended"
+  ],
+  "ignorePatterns": ["**/dist/**", "**/build/**", "**/node_modules/**", "**/*.spec.*", "**/*.test.*"],
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-empty-function": ["error", { "allow": ["methods", "arrowFunctions"] }],
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "no-unused-vars": "off",
+    "no-case-declarations": "off",
+    "no-console": "error",
+    "no-debugger": "error"
+  },
+  "overrides": [
+    {
+      "files": ["frontend/src/**/*.{ts,tsx}"],
+      "env": { "browser": true, "node": false },
+      "plugins": ["react-refresh"],
+      "extends": [
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:react/jsx-runtime"
+      ],
+      "settings": { "react": { "version": "18" } },
+      "rules": {
+        "react-refresh/only-export-components": ["warn", { "allowConstantExport": true }],
+        "no-console": "warn"
+      }
+    }
+  ]
+}
