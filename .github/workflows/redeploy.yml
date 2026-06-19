@@ -1,0 +1,44 @@
+name: Re-deploy Lambda
+on:
+  workflow_dispatch:  # manual triggering
+    inputs:
+      environment:
+        type: choice
+        description: Environment to deploy to
+        options:
+        - demo
+        - staging
+        - prod
+
+env:
+  DEPLOYMENT_ENV: ${{ github.event.inputs.environment || 'demo' }}
+  APP_IMAGE: react-usereducer-django-template
+  REGISTRY: ${{ secrets.ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com
+  AWS_REGION: us-east-1
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+
+    - name: Log in to AWS
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Re-deploy Lambda
+      env:
+        DEPLOYMENT_ENV: ${{ env.DEPLOYMENT_ENV }}
+        REMOTE_IMAGE: ${{ env.REGISTRY }}/${{ env.APP_IMAGE }}
+        REGION: ${{ env.AWS_REGION }}
+        FUNC_NAME: ${{ env.DEPLOYMENT_ENV }}-${{ env.APP_IMAGE }}
+      run: |
+        aws lambda update-function-code \
+          --function-name $FUNC_NAME \
+          --region $REGION \
+          --image-uri $REMOTE_IMAGE:latest
