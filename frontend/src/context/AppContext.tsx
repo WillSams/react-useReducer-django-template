@@ -1,3 +1,4 @@
+// eslint-disable-next-line react-refresh/only-export-components
 import { createContext, useCallback, useContext, useReducer, type ReactNode } from 'react';
 import { apiClient } from '../api/client';
 
