@@ -1,4 +1,3 @@
-// eslint-disable-next-line react-refresh/only-export-components
 import { createContext, useCallback, useContext, useReducer, type ReactNode } from 'react';
 import { apiClient } from '../api/client';
 
@@ -53,6 +52,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   return <AppContext.Provider value={{ ...state, fetchAbout }}>{children}</AppContext.Provider>;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAppContext(): AppContextValue {
   const ctx = useContext(AppContext);
   if (!ctx) throw new Error('useAppContext must be used within AppProvider');
