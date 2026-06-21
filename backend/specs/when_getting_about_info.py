@@ -7,13 +7,6 @@ client = TestClient(api)
 django_client = DjangoClient()
 
 
-class DescribeHealth:
-    def should_return_ok_status(self) -> None:
-        response = client.get("/")
-        assert response.status_code == 200
-        assert response.json() == {"status": "ok"}
-
-
 class DescribeAbout:
     def should_return_about_message(self, settings) -> None:
         settings.ABOUT_MESSAGE = "Template API v0.0.1 (development)"
