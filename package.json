@@ -5,7 +5,7 @@
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && python -m django runserver $BACKEND_PORT --settings=app.settings",
     "format:frontend": "prettier --write \"frontend/src/**/*.{ts,tsx,css}\"",
-    "format:backend": "cd backend && ruff format app/ specs/",
+    "format:backend": "cd backend && ruff format app/ specs/ handler.py",
     "lint:frontend": "eslint frontend/src --ext ts,tsx",
     "lint:backend": "cd backend && ruff check --fix",
     "test:backend": "cd backend && pytest",
