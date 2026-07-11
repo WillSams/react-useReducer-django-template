@@ -9,4 +9,5 @@ npm run lint:frontend
 
 terraform fmt -recursive
 
-git add .
+# Re-stage only files that were already staged, picking up formatter changes
+git update-index --again

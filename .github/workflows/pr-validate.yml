@@ -60,6 +60,10 @@ jobs:
       - name: Lint
         run: npm run lint:frontend
 
+      - name: Typecheck
+        working-directory: frontend
+        run: npm run typecheck
+
       - name: Test with coverage
         working-directory: frontend
         run: npm run test:coverage
